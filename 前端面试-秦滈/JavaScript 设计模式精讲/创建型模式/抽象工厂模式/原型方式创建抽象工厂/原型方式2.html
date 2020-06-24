@@ -6,7 +6,8 @@
 </head>
 <body>
 <script type="text/javascript">
-    /* 饭店方法 */class Restaurant {
+    /* 饭店方法 */
+    class Restaurant {
         static orderDish(type) {
             switch (type) {
                 case '鱼香肉丝':
@@ -49,7 +50,8 @@
                 ' 让我想起了外婆做的菜~') }
     }
 
-    const dish0 = new Dish(); // 输出： Error 抽象类不能直接实例化!const dish1 = Restaurant.orderDish('鱼香肉丝')
+    const dish0 = new Dish(); // 输出： Error 抽象类不能直接实例化!
+     const dish1 = Restaurant.orderDish('鱼香肉丝');
     dish1.eat();
     // 输出: 菜 - 鱼香肉丝 真香~
     const dish2 = Restaurant.orderDish('红烧排骨');
