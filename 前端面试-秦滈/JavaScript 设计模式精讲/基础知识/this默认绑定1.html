@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var a = 'hello';
+
+    var obj = {
+        a: 'world',
+        foo: function() {
+            console.log(this.a)
+        }};
+
+    var bar = obj.foo;
+
+    bar(); // 浏览器中输出: "hello"
+    /**
+     * 此时 bar 函数，
+     * 也就是 obj 上的 foo 方法为什么又指向了全局对象呢，
+     * 是因为 bar 方法此时是作为函数独立调用的，
+     * 所以此时的场景属于默认绑定，而不是隐式绑定。
+     * 这种情况和把方法作为回调函数的场景类似：
+     */
+</script>
+
+</body>
+</html>

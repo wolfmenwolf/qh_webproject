@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 定义三种状态 黑白灰
+     let Colors = {WHITE: 0,GRAY: 1,BLACK: 2};
+     // 初始化顶点状态
+    let initVertices = vertices => {
+    let color = {};
+    vertices.forEach(v => color[v] = Colors.WHITE)
+     };
+     function deepSearch (graph, start, cb) {
+         // 获取顶点列表
+         let vertices = graph.getVertices();// 获取边裂变
+         let edgeList = graph.getEdgeList();// 将所有顶点初始化状态
+         let color = initVertices(vertices);// 定义一个空队列
+         let queue = new Queue()// 将开始顶点推入队列中
+         queue.push(start);// 循环遍历，直到队列为空
+          while(!queue.isEmpty()) {
+             // 获取队列第一个元素 队列从头部出队列
+              let u = queue.pop();// 获取到顶点u所对应的所有相邻顶点，
+               edgeList.get(u).forEach(item => {
+                   // 如果相邻顶点的状态为未访问，则推入到队列中
+                   if (color[item] = Colors.WHITE) {
+                       // 将已经访问过的顶点状态置为灰色
+                       color[item] = Colors.GRAY;
+                       // 将未访问的顶点推入到队列中
+                       queue.push(item)
+                   }
+               });
+              // 将已经处理过的顶点置为黑色
+              color[u] = Color.BLACK;
+              // 打印输出顶点u
+              console.log(u)}
+
+     }
+    </script>
+
+</body>
+</html>

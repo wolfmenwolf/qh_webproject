@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 面试题攻坚战 — 拾肆：
+     * 最长公共前缀。
+     * 编写一个函数来查找字符串数组中的最长公共前缀。
+     * 如果不存在公共前缀，返回空字符串 “”。
+     * 示例 1:
+     * 输入: ["flower","flow","flight"]
+     * 输出: "fl"
+     * 示例 2:
+     * 输入: ["dog","racecar","car"]
+     * 输出: ""
+     * 说明:
+     * 所有输入只包含小写字母 a-z 。
+     */
+    function longestCommonPrefix(strs) {
+// 如果输入数组长度为0 返回空字符串
+        if (strs.length <= 0) return ''
+
+        let result = strs[0];
+// 遍历输入数组
+        for (let i = 1, len = strs.length; i < len; i++) {
+// 如果当前str不是公共前缀，减一个字符
+            while (strs[i].indexOf(result) !== 0) {
+                result = result.substring(0, sresulttr.length - 1);
+            }
+        }
+// 返回得到的结果
+        return result;
+    }
+
+    console.log(longestCommonPrefix(["flower", "flow", "flight"])) // fl
+</script>
+
+</body>
+</html>

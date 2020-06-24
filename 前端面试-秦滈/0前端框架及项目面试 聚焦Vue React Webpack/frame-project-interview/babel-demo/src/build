@@ -1,0 +1,25 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault.js");
+
+require("core-js/modules/es.object.to-string.js");
+
+require("core-js/modules/es.promise.js");
+
+var _includes = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/includes.js"));
+
+var _promise = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/promise.js"));
+
+var _context;
+
+var sum = function sum(a, b) {
+  return a + b;
+}; // 新的 API
+
+
+_promise["default"].resolve(100).then(function (data) {
+  return data;
+}); //新的API
+
+
+(0, _includes["default"])(_context = [10, 20, 30]).call(_context, 20);

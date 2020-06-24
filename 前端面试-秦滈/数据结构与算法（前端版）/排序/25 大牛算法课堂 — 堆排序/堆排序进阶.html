@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 这里我们通过调用排序函数 createHeap 会得到一个最大堆，
+     * 注意这里并不能得到排序好的数组。
+     * 然后我们才可以对数组进行排序，注意，
+     * 排序方法只需要修改 heapSort方法即可。
+     */
+
+
+        // 排序方法
+        function heapSort(arr) {
+// 获得数组的长度
+    let len = arr.length;
+
+    // 首先创建一个最大堆
+    createHeap(arr, len);
+
+    // -------------------新添加代码-----------------------
+    while(len > 0) {
+        let last = len - 1;
+// 将最大元素保存到数组末尾
+        swap(arr, 0, last);
+
+        len--;
+
+// 然后将剩下的元素继续构建为一个新的最大堆
+        adjustHeap(arr, 0, len);
+    }
+    // 返回排序好的数组
+    return arr;}
+    const arr = [ 12, 4, 3, 2, 5, 84, 34, 52, 42, 45, 6, 7, 86, 68, 67 ];
+
+    // 得到排序后的新数组
+    heapSort(arr) // [ 2, 3, 4, 5, 6, 7, 12, 34, 42, 45, 52, 67, 68, 84, 86 ]
+</script>
+
+</body>
+</html>

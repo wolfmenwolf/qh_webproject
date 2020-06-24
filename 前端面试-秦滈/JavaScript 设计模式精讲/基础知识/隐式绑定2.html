@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var a = 'hello';
+
+    var obj = {
+        a: 'world',
+        b:{
+            a:'China',
+            foo: function() {
+                console.log(this.a)
+            }
+        }};
+
+    obj.b.foo() // 浏览器中输出: "China"
+    //最后一个对象是 obj 上的 b，
+    // 那么此时 foo 方法执行时，
+    // 其中的 this 指向的就是 b 对象。
+</script>
+
+</body>
+</html>

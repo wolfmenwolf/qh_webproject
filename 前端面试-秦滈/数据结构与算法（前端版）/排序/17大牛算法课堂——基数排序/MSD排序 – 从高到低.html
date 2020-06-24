@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //先来看下 MSD (从高位到低位排序) 的代码实现。
+
+
+
+const arr = [10,5,5,50,0,155,422,5,1,4,254];
+
+    function radixSort (arr) {
+        let max = arr[0];
+        let len = arr.length;
+        for(let i = 0;i < len;i ++) {
+            if (max < arr[i]) {
+                max = arr[i]
+            }
+        }
+
+        let digits = `${max}`.length;
+        sort(arr, digits - 1);
+// 得到有序数组
+        console.log(arr)//[ 0, 1, 4, 5, 5, 5, 10, 50, 155, 254, 422 ]}function sort(arr, round) {
+        if (round < 0) {
+            return
+        }
+        let result = [];
+// 根据位数创建对应的桶
+        for (let i = 0; i < 10; i++) {
+            result[i] = [];
+        }
+// 将数组中的数放进对应的桶子中
+        for (let i = 0; i < arr.length; i++) {
+            let middle = arr[i] / (Math.pow(10, round));
+// 得到目标桶的坐标
+            let index = Math.floor(middle % 10);
+// 把元素放入到对应的桶中
+            result[index].push(arr[i]);
+        }
+
+// 如果存在某一位未排序，递归排序
+        for (let j = 0,len = result.length;j < len;j ++) {
+            if (result[j].length > 1) {
+                sort(result[j], --round)
+            }
+        }
+        let index = 0;
+// 直到左右元素都排序结束，将桶中将元素取出，放入原数组
+        for (let i = 0; i < result.length; i++) {
+            for (let j = 0; j < result[i].length; j++) {
+                arr[index++] = result[i][j];
+            }
+        }}
+        radixSort(arr);
+</script>
+
+</body>
+</html>

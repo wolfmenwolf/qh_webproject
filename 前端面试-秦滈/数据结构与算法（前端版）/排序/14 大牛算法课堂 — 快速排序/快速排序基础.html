@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    const arr = [8,0,4,6,1,2,7,3,5,9];
+
+    quickSort(arr); // [0,1,2,3,4,5,6,7,8,9] 得到有序数组
+
+    // 快速排序函数
+    function quickSort(arr) {
+    // 如果数组长度<=1,则说明数组不需要排序
+    if (arr.length <= 1) {
+        return arr;
+    }
+    // 找一个基准值索引，一般为数组中间的元素
+    let middleIndex = Math.floor(arr.length / 2);
+
+    // 获取基准值
+    let middleValue = arr[middleIndex];
+    // 建立一个左数组
+    let left = [];
+
+    // 建立一个右数组
+    let right = [];
+
+    // 遍历数组
+    for (let i = 0,len = arr.length; i < len; i++){
+// 如果i为基准值索引，则跳过操作
+        if (i === middleIndex) {
+            continue
+        }
+// 把小于基准值的数据放在左数组中
+        if (arr[i] < middleValue) {
+            left.push(arr[i]);
+        } else {
+// 把大于基准值的数据放在右数组中
+            right.push(arr[i]);
+        }
+    }
+    // 将做数组、基准值和右数组整合在一块儿
+    return quickSort(left).concat([middleValue], quickSort(right));
+    }
+</script>
+
+</body>
+</html>

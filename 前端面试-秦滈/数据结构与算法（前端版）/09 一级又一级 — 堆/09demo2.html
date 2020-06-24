@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+   /** 面试题攻坚战 — 捌：
+
+报数。
+
+报数序列是一个整数序列，按照其中的整数的顺序进行报数，得到下一个数。其前五项如下：
+
+
+
+1. 1
+    2. 11
+    3. 21
+    4. 1211
+    5. 111221
+
+
+    1 被读作 "one 1" ("一个一") , 即 11。
+11 被读作 "two 1s" ("两个一"）, 即 21。
+21 被读作 "one 2", "one 1" （"一个二" , "一个一") , 即 1211。
+
+给定一个正整数 n（1 ≤ n ≤ 30），输出报数序列的第 n 项。
+
+注意：整数顺序将表示为一个字符串。
+
+示例 1:
+
+
+
+    输入: 1
+    输出: "1"
+
+    示例 2:
+
+
+
+    输入: 4
+    输出: "1211"
+
+    解：**/
+   function countAndSay(n) {
+// 如果n为1 ，则直接返回1，不进行计算
+       if(n === 1){
+           return '1'
+       }
+       let origin = 1;
+       let text = '';
+       let html = '';
+// 循环从1 - n
+       while(origin < n) {
+           if(!html) {
+               html = `${origin}`;
+           }
+           let arr = []
+           let data = ''
+           for (let i = 0,len = html.length; i < len; i++) {
+// 将字符中相同的数字做统计
+               if(!data){
+                   data += html[i]
+               } else {
+// 如果碰到不同的数字，则将data清空，重新计算
+                   if(html[i] !== data[data.length - 1]){
+                       arr.push(data);
+                       data = '';
+                   }
+                   data += html[i]
+               }
+           }
+           arr.push(data)
+           text = '';
+// 遍历arr，将个数和元素值拼接在text中
+           arr.forEach(item => {
+               text += `${item.length}${item[0]}`;
+               html = text;
+           })
+           origin ++;
+       }
+// 返回拼接好的文字
+       return text;
+   }
+</script>
+
+</body>
+</html>

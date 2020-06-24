@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 普通版虽说能实现，但是空间复杂度为
+     * O(n)O(n)
+     * 下面我们使用空间复杂度为
+     * O(1)O(1)
+     * 的方法再解答一遍。
+     */
+    function isPalindromeList(head) {
+// 如果head之后一层，直接返回true
+        if (head == null || head.next == null) return true;
+
+// 快慢指针寻找链表中点
+        let slow = head;
+        let fast = head;
+
+// fast的速度为slow的2倍，当fast走到链表末尾时，slow正好在链表的中部
+        while (fast) {
+            slow = slow.next;
+            fast = fast.next ? fast.next.next : fast.next;
+        }
+// 翻转后半部分链表
+        slow = reverse(slow);
+
+// 将后半部分与链表头部开始比对，如果发现一个元素值不一样，则说明不是回文链表
+        while(slow) {
+            if (head.val !== slow.val) {
+                return false
+            }
+            head = head.next;
+            slow = slow.next
+        }
+
+// 运行到此说明链表前半部分和后半部分相同，为回文链表
+        return true;
+
+// 翻转链表函数
+        function reverse (head) {
+            var p = head;
+            var q = null;
+
+            if(p == null) return null;
+
+            while(p.next !== null) {
+                q = p.next;
+                p.next = q.next;
+                q.next = head;
+                head = q;
+            }
+            return head
+        }
+    }
+</script>
+
+</body>
+</html>

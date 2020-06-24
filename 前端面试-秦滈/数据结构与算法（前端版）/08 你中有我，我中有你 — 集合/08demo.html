@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    class Set {
+        constructor() {
+        this.data = [];
+        }
+        // 子集
+        isChild (newSet) {
+        // newSet长度不等于当前集合长度，且newSet的每一个元素当前集合中都存在
+        return this.data.length !== newSet.data.length && newSet.data.every(item => this.data.indludes(item))
+        }
+        // 并集
+        mergeSet (newSet) {
+        // 如果item存在于newSet中，但是不存在当前集合中，将元素记录
+        newSet.forEach(item => {
+        if (!this.data.has(item)) {
+        this.data.push(item)
+        }
+        })
+        return this.data
+        }
+        // 差集
+        diffSet (newSet) {
+        // 返回属于当前集合但是不属于newSet集合的元素
+        return this.data.filter(item => !newSet.has(item))
+        }
+        // 交集
+        interSet (newset) {
+        // 返回同属于两个集合的元素
+        return this.data.fileter(item => newSet.has(item))
+        }
+        // 补集
+        complementSet (newSet) {
+        if (!this.isChild(newSet)) {
+        return false
+        }
+        return this.diffSet(newSet)
+        }
+    }
+</script>
+
+</body>
+</html>

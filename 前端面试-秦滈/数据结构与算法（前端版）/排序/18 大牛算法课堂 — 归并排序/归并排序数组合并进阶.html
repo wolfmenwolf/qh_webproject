@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    const arr = [10,5,4,50,0,155,422,90];
+
+    // 得到并打印排序好的数组
+    console.log(mergeSort(arr)); // [ 0, 4, 5, 10, 50, 90, 155, 422 ]
+
+    function mergeSort(arr) {
+        const len = arr.length;
+// 如果数组长度为1，则递归终止
+        if (len === 1) {
+            return arr;
+        }
+        let left = [];
+        let right = [];
+        const middle = Math.floor(len / 2);
+
+        for (let i = 0;i < len;i ++) {
+            i < middle ? left.push(arr[i]) : right.push(arr[i])
+        }
+// ----------------------- 下方为此次修改的代码 --------------------------
+// 将数组拆分到只有单元素的时候才开始合并
+        return merge(mergeSort(left), mergeSort(right));
+    }
+    // 合并子数组的函数
+    function merge(left, right) {
+    let result = [];
+    let l = 0;
+    let r = 0;
+
+    // 根据left和right中元素的大小排序
+    while(l < left.length && r < right.length) {
+// 如果 左 < 右 将左数组中的元素放入结果数组
+        if (left[l] < right[r]) {
+            result.push(left[l]);
+            l++;
+        } else {
+// 如果 左 > 右 将右数组中的元素放入结果数组
+            result.push(right[r]);
+            r++;
+        }
+    }
+
+    /*
+    下方两个while循环为 -- 在上面循环结束后，left或者right会遗留下元素，所以将元素放入结果数组
+    例如：
+    left: [1,2]
+    right: [3,4]
+    result: []
+    经过第30行的循环后，
+    result: [1,2]
+    left: []
+    right: [3,4]
+    此时right数组并未处理
+    */
+    while (l < left.length) {
+        result.push(left[l]);
+        l++;
+    }
+    while(r < right.length) {
+        result.push(right[r]);
+        r++;
+    }
+    return result;
+    }
+
+    /**
+     * 小结：
+     * 本节主要讲述了：
+     * 1. 归并排序过程和图解；
+     * 2. 归并排序分治过程；
+     * 3. 归并排序归一过程
+     */
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<script type="text/javascript">
+    function add(a) {
+        return a + 1;
+    }
+
+    /* 备忘函数 */function memorize(fn) {
+        const cache = {};
+        return function(...args) {
+            const key = JSON.stringify(args);
+            return cache[key] || (cache[key] = fn.apply(fn, args))
+        }}
+
+    /* 复杂计算函数 */function add(a) {
+        return a + 1}
+
+    const adder = memorize(add);
+
+    adder(1); // 输出: 2 当前: cache: { '[1]': 2 }
+    adder(1); // 输出: 2 当前: cache: { '[1]': 2 }
+    adder(2) // 输出: 3 当前: cache: { '[1]': 2, '[2]': 3 }
+</script>
+</body>
+</html>

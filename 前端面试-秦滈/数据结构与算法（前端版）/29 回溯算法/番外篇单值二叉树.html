@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**番外篇
+     * 面试题攻坚战 — 贰拾贰：
+     * 单值二叉树 。
+     * 如果二叉树每个节点都具有相同的值，那么该二叉树就是单值二叉树。
+     * 只有给定的树是单值二叉树时，才返回 true；否则返回 false。
+     * 示例 1：
+     * 输入：[1,1,1,1,1,null,1]\
+     * 输出：true
+     * 示例 2：
+     * 输入：[2,2,2,5,2]
+     * 输出：false**/
+
+    function isUnivalTree(root) {
+// 如果root为空 返回true
+        if (!root) return true;
+
+// 如果左节点和右节点都为空 返回true
+        if (!root.left && !root.right) return true;
+
+// 保存一下根节点值
+        let result = root.val;
+
+// 初始status为true
+        let status = true;
+
+// 递归判断子节点
+        loop(root);
+        return status;
+
+        function loop(root) {
+// 递归终止条件
+            if(!root) return;
+// 如果有一个值和根节点值不相等，将status置为false并停止递归
+            if(root.val !== result) {
+                status = false;
+                return
+            }
+// 继续递归左节点
+            loop(root.left);
+// 继续递归右节点
+            loop(root.right);
+        }}
+</script>
+
+</body>
+</html>

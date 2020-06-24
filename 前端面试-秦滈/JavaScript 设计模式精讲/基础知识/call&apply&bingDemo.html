@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * call 和 apply 的区别是 call 方法接受的是参数列表，
+     * 而 apply 方法接受的是一个参数数组。
+     * func.call(thisArg, arg1, arg2, ...) // call 用法
+     * func.apply(thisArg, [arg1, arg2, ...]) // apply 用法
+     * 而 bind 方法是设置 this 为给定的值，并返回一个新的函数，
+     * 且在调用新函数时，将给定参数列表作为原函数的参数序列的前若干项。
+     * func.bind(thisArg[, arg1[, arg2[, ...]]]) // bind 用法
+     */
+</script>
+<script type="text/javascript">
+    var food = {
+        name: '汉堡',
+        price: '5块钱',
+        getPrice: function(place) {
+            console.log(place + this.price)
+        }};
+
+    food.getPrice('KFC '); // 浏览器中输出: "KFC 5块钱"
+
+    var getPrice1 = food.getPrice.bind({ name: '鸡腿', price: '7块钱' }, '肯打鸡 ');
+    getPrice1() // 浏览器中输出: "肯打鸡 7块钱"
+</script>
+
+</body>
+</html>

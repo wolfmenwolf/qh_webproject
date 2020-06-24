@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**当前我们得到一个解。
+     * 通过结果来看，我们得到了一个最优解，
+     * 这取决于问题和我们对贪心策略的选择。
+     * 如果我们改成下面这样：**/
+    function coin(N) {
+        const coins = [1,2,5,10];
+        let total = 0;
+        let result = [];
+
+// 修改循环部分
+        for (let i = 0; i < coins.length; i++) {
+            let coin = coins[i];
+            while (total + coin <= N) {
+                result.push(coin);
+                total += coin;
+            }
+        }
+        return result;}
+        coin(23)
+    // [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
+</script>
+
+</body>
+</html>

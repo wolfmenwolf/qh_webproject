@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //折半插入是在直接插入的过程中使用 二分查找（会在查找方法中详细介绍） 方法搜索坐标。
+
+
+
+function binaryInsertSort(arr) {
+    let start; // 二分查找的起始点
+    let end; // 二分查找的终止点
+    let resultIndex; // 插入坐标
+    let result; // 目标值
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < arr[i - 1]) {
+// 获取目标值
+            result = arr[i];
+// 获取起始坐标
+            start = 0;
+// 获取终止坐标
+            end = i - 1;
+// 在此区间之内进行二分查找
+            while (start <= end) {
+// 中间值索引
+                let mid = Math.floor((start + end) / 2);
+// 目标值 > 中间值
+                if (result > arr[mid]) {
+                    start = mid + 1;
+                } else {
+// 目标值 < 中间值
+                    end = mid - 1;
+                }
+            }
+// 将start 到 resultIndex之间的元素统一后移一位
+            for (resultIndex = i; resultIndex > start; resultIndex--) {
+                arr[resultIndex] = arr[resultIndex - 1];
+            }
+// 将目标值放入插入坐标
+            arr[resultIndex] = result;
+        }
+    }}
+
+</script>
+
+</body>
+</html>

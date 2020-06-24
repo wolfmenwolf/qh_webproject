@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    const arr = [8,0,4,6,1,2,7,3,5,9];
+    sortOnce(arr, 0, arr.length - 1); // [ 1, 0, 4, 6, 8, 2, 7, 3, 5, 9 ]
+
+    // 此方法只能对原数组进行一次排序，所以得不到有序数组
+    function sortOnce(arr, left, right) {
+    // 获取基准值 1
+    const pivot = arr[Math.floor((right + left) / 2)];
+    let i = left;
+    let j = right;
+    while (i <= j) {
+// 查找基准值左边大于基准值的数据
+        while (arr[i] < pivot) {
+            i++;
+        }
+// 查找基准值右边小于基准值的数据
+        while (arr[j] > pivot) {
+            j--;
+        }
+// 将左右数据做交换
+        if (i <= j) {
+            let middle = arr[i];
+            arr[i] = arr[j];
+            arr[j] = middle;
+// 继续查找
+            i++;
+            j--;
+        }
+    }}
+</script>
+
+</body>
+</html>

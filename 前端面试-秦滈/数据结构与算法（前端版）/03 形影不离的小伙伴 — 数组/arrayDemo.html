@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+/*
+如何在一个成对元素的数组中找出某个缺失的元素？
+
+例如：
+
+
+
+let a = [1,1,2,2,3]function searchOnly(){
+……处理函数
+}
+console.log(searchOnly(a)); // 输出3
+*/
+<script type="text/javascript">
+    let a = [1,1,2,2,3];
+    function searchOnly(){
+        return a.reduce((prev,next) => prev ^ next)
+    }
+    //执行顺序显示//prev next// 1 ^ 1// 0 ^ 2// 2 ^ 2// 0 ^ 3// 3
+    console.log(searchOnly(a)); // 输出3
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**面试题攻坚战 — 拾伍：
+
+回文链表
+
+    请判断一个链表是否为回文链表。
+
+示例 1:
+
+
+
+    输入: 1->2
+    输出: false
+
+    示例 2:
+
+
+
+    输入: 1->2->2->1
+    输出: true
+
+    解： 普通版**/
+    function isPalindrome(head) {
+// 创建一个临时存储容器
+        let result = [];
+// 将链表中的所有元素放入数组中
+        while(head){
+            result.push(head.val);
+            head = head.next;
+        }
+// 对数组使用左右两个指针判断
+        let start = 0;
+        let end = result.length - 1;
+        while (start <= end) {
+// 如果有一个对称的元素不相等，返回false
+            if (result[start] !== result[end]) {
+                return false
+            }
+            start ++;
+            end --;
+        }
+// 否则此链表为回文链表 返回true
+        return true
+    }
+</script>
+
+</body>
+</html>

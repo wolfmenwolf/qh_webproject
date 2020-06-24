@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 计算最短路径，只需要在 deepSearch 方法中添加计数即可
+    function deepSearch (graph, start, cb) {
+    let vertices = graph.getVertices();
+    let edgeList = graph.getEdgeList();
+    let color = initVertices(vertices);
+    let queue = new Queue();
+    queue.push(start);
+    // -------------------新添加-----------------------
+    let distanceData = {}; // 统计顶点之间距离
+    let preVertices = {}; // 统计顶点的前置顶点
+    // 初始化顶点之间距离和前置顶点
+    vertices.forEach(child => {
+        distanceData[child] = 0;
+        preVertices[child] = null
+    })
+    // ------------------- 结束 -----------------------
+    while(!queue.isEmpty()) {
+        let u = queue.pop();
+        edgeList.get(u).forEach(item => {
+            if (color[item] = Colors.WHITE) {
+                color[item] = Colors.GRAY;
+// 每经过一个新顶点，距离加1
+                distanceData[item] = distanceData[item] + 1;
+// 前置节点修改为 item
+                preVertices[item] = item;
+                queue.push(item)
+            }
+        });
+        color[u] = Color.BLACK
+    }
+    // 打印所有节点之间的距离和前直节点
+    console.log(distanceData, preVertices)}
+</script>
+
+</body>
+</html>

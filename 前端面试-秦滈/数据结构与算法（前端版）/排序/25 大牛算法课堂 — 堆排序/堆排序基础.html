@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 1. 堆排序步骤
+     * 同样的，我们来说一下堆排序的基本步骤
+     * 1.创建一个最大堆；
+     * 2.将堆顶元素放入到数组末尾；
+     * 3.将剩下的元素再次调整为一个最大堆；
+     * 4.重复上述步骤，直到数组有序。
+     */
+        // 排序方法
+        function heapSort(arr) {
+// 获得数组的长度
+    let len = arr.length;
+
+    // 首先创建一个最大堆
+    createHeap(arr, len);
+    return arr;}
+
+    function createHeap(arr, len) {
+// 构建最大堆
+        for (let i = Math.floor(len / 2); i >= 0; i--) {
+            adjustHeap(arr, i, len);
+        }}// 调整堆
+    function adjustHeap(arr, i, len) {
+    // 获得根元素的左子元素坐标
+    let left = 2 * i + 1;
+
+    // 获得根元素的右子元素坐标
+    let right = 2 * i + 2;
+
+    // 保存做大值坐标
+    let largest = i;
+
+    if (left < len && arr[left] > arr[largest]) {
+        largest = left;
+    }
+
+    if (right < len && arr[right] > arr[largest]) {
+        largest = right;
+    }
+
+    // 如果 i 不是最大值
+    if (largest !== i) {
+// 将最大值放到父节点
+        swap(arr, i, largest);
+
+// 递归调整。一步步将堆调整到最大堆
+        adjustHeap(arr, largest, len);
+    }}
+
+    // 交换函数function swap(arr, i, j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]];}
+    const arr = [ 12, 4, 3, 2, 5, 84, 34, 52, 42, 45, 6, 7, 86, 68, 67 ];
+
+    // 得到排序后的新数组
+    heapSort(arr) // [ 2, 3, 4, 5, 6, 7, 12, 34, 42, 45, 52, 67, 68, 84, 86 ]
+</script>
+
+
+</body>
+</html>

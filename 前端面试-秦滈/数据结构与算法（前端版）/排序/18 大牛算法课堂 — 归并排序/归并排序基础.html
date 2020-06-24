@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     *归并排序步骤
+     * 1. 不断的将原数组拆分成两个差值不超过1的子数组；
+     * 2.当拆分的子数组长度为1的时候开始合并成一个新的有序数组；
+     * 3.重复第二步。直到得到一个有序数组。
+     * 说明：
+     * 1.在开始的时候将数组一直拆分，拆分到每个子数组只剩下一个元素；
+     * 2.之后开始合并子数组，在合并的时候根据大小进行排序。确保每个合并好的数组都是有序的；
+     * 3.最后我们得到了一个有序的数组。
+     */
+    // 创建一个乱序数组
+    const arr = [10,5,4,50,0,155,422,90];
+
+    mergeSort(arr);
+
+    function mergeSort(arr) {
+        console.log(arr)
+        const len = arr.length;
+// 如果数组长度为1，则递归终止
+        if (len === 1) {
+            return arr;
+        }
+        let left = [];
+        let right = [];
+        const middle = Math.floor(len / 2);
+
+        for (let i = 0;i < len;i ++) {
+            i < middle ? left.push(arr[i]) : right.push(arr[i])
+        }
+
+// 将数组拆分到只有单元素
+        mergeSort(left);
+        mergeSort(right)
+    }
+</script>
+
+</body>
+</html>

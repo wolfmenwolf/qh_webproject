@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+    买卖股票的最佳时机。
+
+给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
+
+设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。
+
+    **注意：**你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
+示例 1:
+
+
+    输入：[7,1,5,3,6,4]
+    输出：7
+    解释:
+
+        1.
+    在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出，这笔交易所能获得利润 = 5-1 = 4 。
+	2.
+    随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，这笔交易所能获得利润 = 6-3 = 3 。
+
+
+示例 2:
+
+
+    输入：[1,2,3,4,5]
+    输出： 4
+    解释:
+
+        1.
+    在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出， 这笔交易所能获得利润 = 5-1 = 4 。
+	2.
+    注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。
+	3.
+    因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。
+
+
+示例 3:
+
+
+    输入： [7,6,4,3,1]
+    输出： 0
+    解释：在这种情况下，没有交易完成，所以最大利润为 0。
+
+解答：**/
+    function maxProfit(prices) {
+// 创建缓存数组
+        let middle = [];
+// 结果集
+        let result = [];
+        let len = prices.length;
+// 遍历 价格列表
+        for (let i = 0;i < len;i ++){
+            let item = prices[i];
+// 如果缓存数组为空，放入缓存
+            if(!middle.length){
+                middle.push(item)
+            }
+// 如果缓存中最后一个价格 小于 当前价格 放入
+            if(middle[middle.length - 1] < item){
+                middle.push(item)
+            }
+// 如果缓存中最后一个价格 大于 当前价格， 求差并放入到结果集中，然后指针回退一步
+            if(middle[middle.length - 1] > item){
+                if(middle.length > 1){
+                    result.push(middle[middle.length - 1] - middle[0])
+                }
+// 清空缓存
+                middle = [];
+                i--
+            }
+// 将最后一组差值放入结果集
+            if(i === len - 1) {
+                result.push(middle[middle.length - 1] - middle[0])
+            }
+        }
+// 如果结果为空，返回 0
+        if (!result.length) {
+            return 0
+        }
+// 返回结果的所有元素之和
+        return result.reduce((p,n) => {
+            return p + n
+        })}
+
+    /**
+     * 步骤解析：
+     1.只要第二天的值小于前一天，则将缓存数组中的元素求差。并将差存入结果集；
+     2.最后返回结果集的和。
+     */
+</script>
+
+</body>
+</html>

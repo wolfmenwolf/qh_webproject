@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**面试题攻坚战 — 拾叁：
+
+删除被覆盖区间。
+
+给你一个区间列表，请你删除列表中被其他区间所覆盖的区间。
+
+只有当 c <= a 且 b <= d 时，我们才认为区间 [a,b) 被区间 [c,d) 覆盖。
+
+在完成所有删除操作后，请你返回列表中剩余区间的数目。
+
+
+
+示例：
+输入：intervals = [[1,4],[3,6],[2,8]]
+    输出：2
+    解释：区间 [3,6] 被区间 [2,8] 覆盖，所以它被删除了。
+
+
+提示：
+1 <= intervals.length <= 1000
+    0 <= intervals[i][0] < intervals[i][1] <= 10^5
+    对于所有的 i != j：intervals[i] != intervals[j]
+
+    解答：**/
+    const arr = [[1,4],[3,6],[2,8]];
+
+    // 给数组排序，偷懒一下，使用个api ?
+    arr.sort((a, b) => {return a[0] - b[0]});
+
+    function deleteZone(arr) {
+        len = arr.length;
+        for (let i = len - 1; i > 0; i--) {
+            if (arr[i - 1][1] > arr[i][1]) {
+                arr.splice(i,1)
+            }
+        }
+        return arr;}
+        deleteZone(arr); // [ [1, 4], [2, 8] ]
+    /**
+     * 步骤讲解：
+     * 1.给数组排序；
+     * 2.判断右边界，如果下一元素的右边界小于当前元素，就删除当前元素。
+     */
+</script>
+
+</body>
+</html>

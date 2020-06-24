@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    let Colors = {
+        WHITE: 0,
+        GRAY: 1,
+        BLACK: 2}
+        // 深度遍历顶点的方法
+    let depthFirstSearchVisit = (u, color, adjList, callback) => {
+    color[u] = Colors.GREY;
+    if (callback) callback(u);
+    // 遍历顶点
+    adjList.get(u).forEach(n => {
+// 如果顶点的颜色为白色，则将此顶点推入栈中
+        if (color[n] === Colors.WHITE) {
+            depthFirstSearchVisit(n, color, adjList, callback);
+        }
+    });
+    // 处理过的顶点置为黑色
+    color[u] = Colors.BLACK;};
+
+    let depthFirstSearch = (graph, callback) => {
+// 获取当前的顶点列表
+        let vertices = graph.getVertices();
+// 获取当前的边列表
+        let adjList = graph.getAdjList();
+// 初始化顶点状态
+        let color = initializeColor(vertices);
+// 遍历为被访问过的顶点
+        vertices.forEach(v => {
+            if (color[v] === Colors.WHITE) {
+                depthFirstSearchVisit(v, color, adjList, callback);
+            }
+        });};
+</script>
+
+</body>
+</html>

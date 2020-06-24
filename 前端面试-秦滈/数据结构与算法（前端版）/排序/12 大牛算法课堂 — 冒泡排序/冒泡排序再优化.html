@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    const arr = [8,0,4,6,1,2,7,3,5,9];
+    let num = 0;
+    function bubbling (arr) {
+        const len = arr.length;
+// 添加一个标志位
+        let flag = true;
+
+// 如果标志位为true的时候才执行循环
+        for(let i = 0;i < len && flag;i++) {
+// 将标志位置为false
+            flag = false;
+            console.log(`第${num++}次执行`);
+
+            for(let j = 0;j < len - 1 - i;j++) {
+                if (arr[j] > arr[j + 1]) {
+                    let middle = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = middle;
+// 如果有交换，说明数组不是有序的，则继续进行循环
+                    flag = true
+                }
+            }
+        }
+        console.log(arr)}
+        bubbling(arr);
+</script>
+
+</body>
+</html>

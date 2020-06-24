@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    const arr = [8,0,4,6,1,2,7,3,5,9];
+
+    function choose (arr) {
+// 左指针，从左到右开始遍历
+        let left = 0;
+// 右指针，从右到左开始遍历
+        let right = arr.length - 1;
+// 最大值
+        let max;
+// 最小值
+        let min;
+        while (left < right) {
+            max = left;
+            min = left;
+            for(let i = left + 1;i < arr.length - left; i++){
+// 同时寻找最小值和最大值坐标
+                if(arr[i] > arr[max]){
+                    max = i;
+                }
+                if(arr[i] < arr[min]){
+                    min = i;
+                }
+            }
+// 如果找到的最大值不是末尾元素，则将最大值交换到末尾
+            if(max !== right){
+                swap(arr,max,right);
+            }
+            if(min === right){
+                min = max;
+            }
+// 如果找到的最小值不是头部元素，则将最大值交换到头部
+            if(min !== left){
+                swap(arr,min,left);
+            }
+            left++;
+            right--;
+        }
+        console.log(arr)}function swap (arr, left, right) {
+        let middle = arr[left];
+        arr[left] = arr[right];
+        arr[right] = middle
+    };
+    choose(arr);
+</script>
+
+</body>
+</html>

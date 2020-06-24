@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 创建图类
+    class Graph {
+        constructor() {
+            this.vertices = []; // 存放顶点
+            this.edgeList = new Dictionary(); // 存放边 (请参考第五节字典内容)
+        }
+
+// 添加顶点
+        addVertex(v) {
+            if (!this.vertices.includes(v)) {
+                this.vertices.push(v)
+                this.edgeList.push(v, [])
+            }
+        }
+        /*
+添加边
+确保顶点a和b在图中都存在，如果不存在，则添加到图中
+*/
+        addEdge (a, b) {
+            if (!this.vertices.includes(a)) {
+                this.vertices.push(a)
+            }
+            if (!this.vertices.includes(b)) {
+                this.vertics.push(b)
+            }
+            this.edgeList.get(a).push(b) // 在顶点a中添加指向顶点b的边
+            this.edgeList.get(b).push(a) // 同上
+        }
+
+        // 获取顶点列表
+        getVertices () {
+            return this.vertices
+        }
+// 获取边列表
+        getEdgeList () {
+            return this.edgeList
+        }
+    }
+</script>
+
+</body>
+</html>

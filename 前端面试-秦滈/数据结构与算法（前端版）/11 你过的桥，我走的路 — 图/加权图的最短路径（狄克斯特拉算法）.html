@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 取当前数值的最小值
+    const INF = Number.MAX_SAFE_INTEGER;
+    // 狄克斯特拉算法主体
+    const dijkstra = (graph, src) => {
+    // 当前图的顶点列表
+    const dist = [];
+    // 已经遍历过的顶点列表
+    const visited = [];
+    // 图中的顶点数量
+    const {length} = graph;
+    // 将所有的权重设置为INF 所有的节点设置为为遍历状态
+    for (let i = 0; i < length; i++) {
+        dist[i] = INF;
+        visited[i] = false;
+    }
+    // 当前节点的权重设置为0
+    dist[src] = 0;
+    // 遍历所有的顶点
+    for (let i = 0; i < length - 1; i++) {
+// 获取到距离当前顶点权重最低的节点
+        const index = minDistance(dist, visited);
+// 将此节点设置为访问状态
+        visited[index] = true;
+        for (let v = 0; v < length; v++) {
+            if (!visited[v] && graph[index][v] !== 0 && dist[index] !== INF && dist[index] + graph[index][v] < dist[v]) {
+                dist[v] = dist[index] + graph[index][v];
+            }
+        }
+    }
+    return dist;
+    };// 获取距离当前顶点最短距离的顶点索引
+    const minDistance = (dist, visited) => {
+    let min = INF;
+    let minIndex = -1;
+    for (let v = 0; v < dist.length; v++) {
+// 如果当前顶点未被访问过，且两者之间的距离小于最小距离，则将最小距离设置为此顶点，并记录此节点的索引
+        if (visited[v] === false && dist[v] <= min) {
+            min = dist[v];
+            minIndex = v;
+        }
+    }
+    return minIndex;};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 番外篇
+     * 面试题攻坚战 — 拾柒：
+     * 删除链表的倒数第 N 个节点。
+     * 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
+     * 示例：
+     * 给定一个链表: 1->2->3->4->5, 和 n = 2.
+     * 当删除了倒数第二个节点后，链表变为 1->2->3->5.
+     */
+    function removeNthFromEnd(head, n) {
+// 如果head为空，直接返回
+        if (!head) return head;
+
+// 定义快慢指针定位要删除的元素
+        let slow = head;
+        let fast = head;
+// 先让快指针走 N 步
+        for (let i = 0; i < n; i++) {
+            fast = fast.next
+        }
+// 如果快指针走到了最后，直接返回head.next
+        if(!fast){
+            return head.next;
+        }
+// 查找要删除的元素的前一个元素
+        while(fast.next) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+// 将倒数第 N 个元素的前一个元素next指针指到下一个元素上
+        slow.next = slow.next.next;
+        return head;}
+</script>
+
+</body>
+</html>

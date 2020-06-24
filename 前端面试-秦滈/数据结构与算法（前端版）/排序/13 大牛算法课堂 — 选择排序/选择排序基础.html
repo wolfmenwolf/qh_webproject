@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 1. 选择排序思路
+     * 步骤：
+     * 1.在乱序数组中查找到最小元素（升序），存放到起始位置；
+     * 2.重复第一步，直到数组有序。
+     * 下面我们来看看代码实现。
+     */
+    // 乱序数组
+    const arr = [8,0,4,6,1,2,7,3,5,9];
+    // 选择排序方法
+    function choose (arr) {
+// 最小元素的坐标
+    let minIndex;
+    const len = arr.length;
+    for(let i = 0;i < len - 1;i ++){
+        minIndex = i;
+// 遍历查找。如果存在更小元素，则替换最小元素坐标
+        for(let j = i + 1;j < len;j ++){
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j
+            }
+        }
+// 找到了最小坐标，替换到乱序数组头部
+        let middle = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = middle;
+    }};
+    choose(arr);
+</script>
+
+</body>
+</html>

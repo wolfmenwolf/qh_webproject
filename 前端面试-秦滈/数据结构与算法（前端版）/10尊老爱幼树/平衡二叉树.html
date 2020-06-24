@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 定义平衡二叉树类
+    class BSTAVL {
+    constructor(num) {
+        this.root = num;
+        this.height = 1;
+        this.left = null;
+        this.right = null;
+    }
+    // 添加数据
+    add(num) {
+        let result = this;
+//创建节点 每一个节点都是一颗树
+        let targetChild = new BSTAVL(num);
+        if (targetChild.root > this.root) {
+// 将target添加到值为null的节点上
+            this.right = this.right === null ? targetChild : this.right.add(num)
+//该树下面的左右节点平衡值
+            let balanceFactor = this.getBalanceDiff(this.right, this.left);
+//差值 > 1 不平衡
+            if (balanceFactor === 2) {
+                if (targetChild.root > this.right.root) {// 只需要将整棵树进行右旋即可
+                    result = this.RR();
+                } else { // 需要先将子树进行右旋，再将父级左旋
+                    result = this.RL();
+                }
+            }
+        } else if (targetChild.root < this.root) {
+// 将target添加到值为null的节点上
+            this.left = this.left === null ? targetChild : this.left.add(num)
+//该树下面的左右节点平衡值
+            let balanceFactor = this.getBalanceDiff(this.left, this.right);
+//差值 > 1 不平衡
+            if (balanceFactor === 2) {
+                if (targetChild.root < this.left.root) {
+                    result = this.LL();// 只需要将整棵树进行左旋即可
+                } else {// 需要先将子树进行左旋，再将父级右旋
+                    result = this.LR();
+                }
+            }
+        } else {
+            throw '输入了重复的值'
+        }
+// 获取当前树的高度
+        this.height = this.getMax(this.left, this.right) + 1;
+        return result;
+    }
+    // 获取最大高度
+    getMax(a, b) {
+        let aHeight, bHeight;
+        aHeight = !a ? 0 : a.height;
+        bHeight = !b ? 0 : b.height;
+        return Math.max(aHeight, bHeight);
+    }
+    // 获取高度差
+    getBalanceDiff(a, b) {
+        let aValue, bValue;
+        aValue = !a ? 0 : a.height;
+        bValue = !b ? 0 : b.height;
+        return aValue - bValue;
+    }
+    // 右旋
+    RR() {
+        let a = this;
+        let b = this.right;
+        a.right = b.left;
+        b.left = a;
+        a.height = a.getMax(a.right, a.left) + 1;
+        b.height = b.getMax(b.right, b.right) + 1;
+        return b;
+    }
+    // 子树右旋，父树左旋
+    RL() {
+        let a = this;
+        a.right = a.right.LL();
+        a = a.RR();
+        return a;
+    }
+    // 左旋
+    LL() {
+        let a = this;
+        let b = this.left;
+        a.left = b.right;
+        b.right = a;
+        a.height = a.getMax(a.right, a.left) + 1;
+        b.height = b.getMax(b.right, b.right) + 1;
+        return b;
+
+    }
+    // 子树左旋，父树右旋
+    LR() {
+        let a = this;
+        a.left = a.left.RR();
+        a = a.LL();
+        return a;
+    }}
+
+    let arr = [1,2,3,4,5,6,7];let tree;// 循环添加数据
+    arr.forEach((child, index) => {
+        tree = !index ? new BSTAVL(child) : tree.add(child);});
+    console.log(tree);
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    function quick(array, left, right) {
+        let index;
+        if (array.length > 1) {
+            index = sortOnce(array, left, right);
+            if (left < index - 1) {
+// 对基准值左边的元素排序
+                quick(array, left, index - 1);
+            }
+            if (index < right) {
+// 对基准值右边的元素排序
+                quick(array, index, right);
+            }
+        }
+        return array;}
+
+        function sortOnce(arr, left, right) {
+        const pivot = arr[Math.floor((right + left) / 2)];
+        let i = left;
+        let j = right;
+        while (i <= j) {
+            while (arr[i] < pivot) {
+                i++;
+            }
+            while (arr[j] > pivot) {
+                j--;
+            }
+            if (i <= j) {
+                let middle = arr[i]
+                arr[i] = arr[j]
+                arr[j] = middle
+                i++;
+                j--;
+            }
+        }
+// 新增加，我们把处理之后的i值return出去
+        return i
+    }
+
+    // 使用乱序数组验证
+    const arr = [8,0,4,6,1,2,7,3,5,9];
+    quick(arr, 0, arr.length - 1);
+    // [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ] 得到有序数组
+</script>
+
+</body>
+</html>

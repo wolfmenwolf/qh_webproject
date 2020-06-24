@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    const arr = [8,0,4,6,1,2,7,3,5,9];
+
+    function bubbling (arr) {
+        const len = arr.length;
+        for(let i = 0;i < len;i++) {
+// 这里我们做一步改变
+// for(let j = 0;j < len - 1;j++) { // 原来是这么写
+            for(let j = 0;j < len - 1 - i;j++) {
+                if (arr[j] > arr[j + 1]) {
+                    let middle = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = middle
+                }
+            }
+        }
+        console.log(arr)}
+
+        bubbling(arr);
+</script>
+
+</body>
+</html>

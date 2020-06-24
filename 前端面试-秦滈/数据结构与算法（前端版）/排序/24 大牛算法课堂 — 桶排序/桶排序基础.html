@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 桶排序步骤
+     * 好，咱们先说一下桶排序的基本步骤
+     * 1.设置空桶；
+     * 2.将数据放到对应的空桶中；
+     * 3.将每个不为空的桶进行排序；
+     * 4.拼接不为空的桶。
+     */
+    const arr = [ 12, 4, 3, 2, 5, 84, 34, 52, 42, 45, 6, 7, 86, 68, 67 ];
+    function bucketSort (arr) {
+        if (arr.length <= 1) {
+            return arr;
+        }
+// 默认创建 5 个桶容器
+        const bucketCount = 5;
+
+// 初始化需要的参数
+        let len = arr.length;
+// 用来排序的桶
+        let barrel = [];
+// 用来存放排序结果
+        let result = [];
+        let max = arr[0];
+        let min = arr[0];
+
+// 寻找到数组中的最大值和最小值
+        for (let i = 1; i < len; i++) {
+            arr[i] >= max ? max = arr[i] : arr[i] <= min ? min = arr[i] : '';
+        }
+
+// 求出每一个桶的数值范围
+        let space = (max - min + 1) / bucketCount;
+
+// 将数值装入桶中
+        for (let i = 0; i < len; i++) {
+// 找到相应的桶序列
+            let index = Math.floor((arr[i] - min) / space);
+// 判断是否桶中已经有数值
+            if (barrel[index]) {
+                let bucket = barrel[index];
+                let k = bucket.length - 1;
+
+// 使用插入排序方法将数组从小到大排列
+                while (k >= 0 && barrel[index][k] > arr[i]) {
+                    barrel[index][k + 1] = barrel[index][k];
+                    k--
+                }
+                barrel[index][k + 1] = arr[i];
+
+            } else {
+// 否则，新建容器并添加数据
+                barrel[index] = [];
+                barrel[index].push(arr[i]);
+            }
+        }
+// 开始合并数组
+        let n = 0;
+        while (n < bucketCount) {
+// 将不为空的数组合并
+            if (barrel[n]) {
+                result = result.concat(barrel[n]);
+            }
+            n++;
+        }
+        return result;}//开始排序
+    console.log(bucketSort(arr));
+</script>
+
+</body>
+</html>

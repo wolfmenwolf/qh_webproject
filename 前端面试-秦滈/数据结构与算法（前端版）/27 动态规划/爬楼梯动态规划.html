@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 通过一个简单的爬楼梯问题，我们来看下怎么用动态规划来解决问题。
+     * 第一个台阶：
+     *只有一种方法
+     * 第二个台阶：
+     *有两种方法
+     *
+     * 1 — 1
+     *2
+     * 第三层台阶：
+     *
+     * 有三种方法 （总数为第一个台阶 + 第二个台阶的方法和）
+     *1 — 1 — 1
+     *1 — 2
+     *2 — 1
+     * 第四层台阶：
+     *有五种方法 （总数为 第三层台阶 + 第二层的方法和）
+     *1 — 1 — 1 — 1
+     *1 — 1 — 2
+     *1 — 2 — 1
+     *2 — 1 — 1
+     *2 — 2
+     * …………
+     * 以此类推，到第十层的方法为 第八层 + 第九层的方法和。
+     * 通过问题拆解，我们把爬到第十层的总数逐步拆解为小问题求解，
+     * 并最终得到问题的答案。
+     * 代码：
+     */
+    // 爬楼梯方法 ---- 递归版本
+    function climbStairs (n) {
+    // 如果当前是 第 0，1，2 层，直接返回n
+    if (n === 0 || n === 1 || n === 2) {
+        return n
+    }
+    return climbStairs(n - 1) + climbStairs(n - 2)}
+
+    // 爬楼梯方法 ---- 循环方法
+    function climbStairs2 (n) {
+    if (n === 0 || n === 1 || n === 2) {
+        return n
+    }
+    let a = 1; // 当前层的前两层
+    let b = 2; // 当前层的前一层
+    let result = 0;
+    for(let i = 3;i <= n;i ++) {
+        result = a + b;
+        a = b;
+        b = result;
+    }
+    return result
+    }
+</script>
+
+</body>
+</html>

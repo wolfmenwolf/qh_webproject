@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var a = 'hello';
+
+    var obj = {
+        a: 'world',
+        foo: function() {
+            console.log(this.a)
+        }};
+
+    function func(fn) {
+        fn()}
+
+    func(obj.foo); // 浏览器中输出: "hello"
+    /**
+     * 参数传递实际上也是一种隐式的赋值，
+     * 只不过这里 obj.foo 方法是被隐式赋值给了函数 func 的形参 fn，
+     * 而之前的情景是自己赋值，两种情景实际上类似。
+     * 这种场景我们遇到的比较多的是 setTimeout 和 setInterval，
+     * 如果回调函数不是箭头函数，那么其中的 this 指向的就是全局对象.
+     * 其实我们可以把默认绑定当作是隐式绑定的特殊情况，
+     * 比如上面的 bar()，
+     * 我们可以当作是使用 window.bar() 的方式调用的，
+     * 此时 bar 中的 this 根据隐式绑定的情景指向的就是 window。
+     */
+</script>
+
+</body>
+</html>
