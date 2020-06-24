@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单例模式2</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 稍微解释一下，这个构造函数在内部维护
+     * （或者直接挂载自己身上）一个实例，
+     * 第一次执行 new 的时候判断这个实例有没有创建过，
+     * 创建过就直接返回，否则走创建流程。
+     * 我们可以用 ES6 的 class 语法改造一下：
+     */
+    class ManageGame {
+        static _schedule = null;
+        static getInstance() {
+            if (ManageGame._schedule) { // 判断是否已经有单例了
+                return ManageGame._schedule
+            }
+            return ManageGame._schedule = new ManageGame()
+        }
+        constructor() {
+            if (ManageGame._schedule) { // 判断是否已经有单例了
+                return ManageGame._schedule
+            }
+            ManageGame._schedule = this
+        }}
+
+    const schedule1 = new ManageGame();
+    const schedule2 = ManageGame.getInstance();
+
+    console.log(schedule1 === schedule2) // true
+</script>
+
+</body>
+</html>

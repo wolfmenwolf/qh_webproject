@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>块级作用域方式创建单例</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * IIFE 方式本质还是通过函数作用域的方式来隐藏内部作用域的变量，
+     * 有了 ES6 的 let/const 之后，
+     * 可以通过 { }
+     * 块级作用域的方式来隐藏内部变量：
+     */
+    let getInstance
+    {
+        let _instance = null; // 存储单例
+        const Singleton = function() {
+            if (_instance) return _instance; // 判断是否已有单例
+            _instance = this;
+            this.init(); // 初始化操作
+            return _instance
+        };
+        Singleton.prototype.init = function() {
+            this.foo = 'Singleton Pattern'
+        };
+        getInstance = function() {
+            if (_instance) return _instance;
+            _instance = new Singleton();
+            return _instance
+        }}
+
+    const visitor1 = getInstance();
+    const visitor2 = getInstance();
+
+    console.log(visitor1 === visitor2)
+</script>
+
+</body>
+</html>

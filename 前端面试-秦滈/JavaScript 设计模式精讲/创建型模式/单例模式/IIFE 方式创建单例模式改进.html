@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IIFE 方式创建单例模式改进</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 这样一来，虽然仍使用一个变量 _instance 来保存单例，
+     * 但是由于在闭包的内部，所以外部代码无法直接修改。
+     * 在这个基础上，我们可以继续改进，
+     * 增加 getInstance 静态方法：
+     */
+
+    const Singleton = (function() {
+        let _instance = null; // 存储单例
+        const Singleton = function() {
+            if (_instance) return _instance; // 判断是否已有单例
+            _instance = this;
+            this.init(); // 初始化操作
+            return _instance
+        };
+        Singleton.prototype.init = function() {
+            this.foo = 'Singleton Pattern'
+        };
+        Singleton.getInstance = function() {
+            if (_instance) return _instance;
+            _instance = new Singleton();
+            return _instance
+        };
+        return Singleton
+    })();
+
+    const visitor1 = new Singleton();
+    const visitor2 = new Singleton(); // 既可以 new 获取单例
+     const visitor3 = Singleton.getInstance(); // 也可以 getInstance 获取单例
+
+    console.log(visitor1 === visitor2); // true
+    console.log(visitor1 === visitor3); // true
+    /**
+     * 代价和上例一样是闭包开销，
+     * 并且因为 IIFE 操作带来了额外的复杂度，
+     * 让可读性变差。
+     * IIFE 内部返回的 Singleton
+     * 才是我们真正需要的单例的构造函数，
+     * 外部的 Singleton 把它和一些单例模式的创建逻辑进行了一些封装。
+     * IIFE 方式除了直接返回一个方法/类实例之外，
+     * 还可以通过模块模式的方式来进行，就不贴代码了，
+     * 代码实现在 Github 仓库中，读者可以自己瞅瞅。
+     */
+</script>
+
+</body>
+</html>
