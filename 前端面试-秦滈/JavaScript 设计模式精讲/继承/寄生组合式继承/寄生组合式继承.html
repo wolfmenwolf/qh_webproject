@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /* 实现继承逻辑 */
+    function inheritPrototype(sub, sup) {
+        var prototype = Object.create(sup.prototype);
+        prototype.constructor = sub;
+        sub.prototype = prototype
+    }
+
+    /* 四边形 */
+    function Rectangle(length, width) {
+        this.length = length;
+        this.width = width;
+        this.color = 'red'
+    }
+
+    /* 获取面积 */
+    Rectangle.prototype.getArea = function() {
+        return this.length * this.width
+    };
+
+    /* 获取尺寸信息 */
+    Rectangle.prototype.getSize = function() {
+        console.log(`Rectangle: ${ this.length }x${ this.width }，
+        面积: ${ this.getArea() }`)
+    };
+
+    /* 正方形 */
+    function Square(size) {
+        Rectangle.call(this, size, size); // 第一次调用 Rectangle 函数
+        this.color = 'blue'
+    }
+
+    // 实现继承
+    inheritPrototype(Square, Rectangle);
+
+    Square.prototype.getSize = function() {
+        console.log(`Square: ${ this.length }x${ this.width }，
+        面积: ${ this.getArea() }`)
+    };
+
+    var rect = new Rectangle(5, 10);
+    var squa = new Square(6);
+
+    rect.getSize(); // Rectangle: 5x10，面积: 50
+    squa.getSize(); // Square: 6x6，面积: 36
+    /**
+     * 这种方式的高效率体现它只调用了一次父类构造函数，
+     * 并且因此避免了在 Rectangle.prototype 上面创建不必要的、
+     * 多余的属性。
+     * 与此同时，原型链还能保持不变。
+     * 因此，
+     * 还能够正常使用 instanceof 和isPrototypeOf。
+     * 开发人员普遍认为寄生组合式继承是引用类型最理想的继承范式。
+     * 不过这种实现有些麻烦，推介使用组合继承和下面的 ES6 方式实现继承。
+     */
+</script>
+
+</body>
+</html>

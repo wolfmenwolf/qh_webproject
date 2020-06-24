@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var rectangle = {
+        sizeType: '四边形',
+        getSize: function() {
+            console.log(this.sizeType)
+        }};
+
+    var square = Object.create(rectangle, {
+        sizeType: { value: '正方形' }});
+
+    rectangle.getSize(); // "四边形"
+    square.getSize(); // "正方形"
+
+    console.log(rectangle.hasOwnProperty('getSize')); // true
+    console.log(rectangle.isPrototypeOf(square)); // true
+    console.log(square.hasOwnProperty('getSize')); // false
+    console.log('getSize' in square);// true
+
+    console.log(square.__proto__ === rectangle);// true
+    console.log(square.__proto__.__proto__ === Object.prototype); // true
+    /**
+     * 对象 square 继承自对象 rectangle，
+     * 也就继承了 rectangle 的 sizeType 属性和 getSize() 方法，
+     * 又通过重写 sizeType 属性定义了一个自有属性，
+     * 隐藏并替代了原型对象中的同名属性。
+     * 所以 rectangle.getSize() 输出 「四边形」
+     * 而 square.getSize() 输出 「正方形」。
+     * 在访问一个对象的时候，
+     * JavaScript 引擎会执行一个搜索过程，
+     * 如果在对象实例上发现该属性，该属性值就会被使用，
+     * 如果没有发现则搜索其原型对象 [[Prototype]]，
+     * 如果仍然没有发现，则继续搜索该原型对象的原型对象 [[Prototype]]，
+     * 直到继承链顶端，顶端通常是一个 Object.prototype，
+     * 其 [[prototype]] 为 null。这就是原型链的查找过程。
+     * 可以通过 Object.create() 创建 [[Prototype]] 为 null 的对象：
+     * var obj = Object.create(null)。
+     * 对象 obj 是一个没有原型链的对象，
+     * 这意味着 toString() 和 valueOf 等
+     * 存在于 Object 原型上的方法同样不存在于该对象上，
+     * 通常我们将这样创建出来的对象为
+     * 纯净对象。
+     */
+</script>
+
+</body>
+</html>

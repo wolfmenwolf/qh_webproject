@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * JavaScript 中的对象继承是构造函数继承的基础，
+     * 几乎所有的函数都有 prototype 属性
+     * （通过Function.prototype.bind 方法构造出来的函数是个例外），
+     * 它可以被替换和修改。
+     * 函数声明创建函数时，
+     * 函数的 prototype 属性被自动设置为一个继承自
+     * Object.prototype 的对象，
+     * 该对象有个自有属性 constructor，
+     * 其值就是函数本身。
+     */
+
+    // 构造函数
+    function YourConstructor() {}
+
+// JavaScript 引擎在背后做的：
+    YourConstructor.prototype = Object.create(Object.prototype, {
+        constructor: {
+            configurable: true,
+            enumerable: true,
+            value: YourConstructor,
+            writable: true
+        }});
+
+    console.log(YourConstructor.prototype.__proto__ === Object.prototype) // true
+</script>
+
+</body>
+</html>

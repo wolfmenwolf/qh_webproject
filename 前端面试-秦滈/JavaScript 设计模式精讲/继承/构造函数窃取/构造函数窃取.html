@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数窃取</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 构造函数窃取又称构造函数借用、经典继承。
+     * 这种技术的基本思想相当简单，
+     * 即在子类型构造函数的内部调用父类构造函数。
+     */
+    function getArea() {
+        return this.length * this.width
+    }
+
+    /* 四边形 */
+    function Rectangle(length, width) {
+        this.length = length;
+        this.width = width
+    }
+
+    /* 获取面积 */
+    Rectangle.prototype.getArea = getArea;
+
+    /* 获取尺寸信息 */
+    Rectangle.prototype.getSize = function()
+    {
+        console.log(`Rectangle: ${ this.length }x${ this.width }，
+        面积: ${ this.getArea() }`)};
+
+    /* 正方形 */
+    function Square(size) {
+        Rectangle.call(this, size, size);
+        this.getArea = getArea;
+        this.getSize = function() {
+            console.log(`Square: ${ this.length }x${ this.width }，
+            面积: ${ this.getArea() }`)
+        }}
+
+    var rect = new Rectangle(5, 10);
+    var squa = new Square(6);
+
+    rect.getSize(); // Rectangle: 5x10，面积: 50
+    squa.getSize(); // Square: 6x6，面积: 36
+    /**
+     * 这样的实现避免了引用类型的属性被所有实例共享的问题，
+     * 在父类实例创建时还可以自定义地传参，
+     * 缺点是方法都是在构造函数中定义，
+     * 每次创建实例都会重新赋值一遍方法，
+     * 即使方法的引用是一致的。
+     * 这种方式通过构造函数窃取来设置属性，
+     * 模仿了那些基于类的语言的类继承，
+     * 所以这通常被称为伪类继承或经典继承。
+     */
+</script>
+</body>
+</html>

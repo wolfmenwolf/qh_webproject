@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6 的 extends 方式实现继承</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**ES6 中引入了 class 关键字，
+     * class 之间可以通过 extends 关键字实现继承，
+     * 这比 ES5 的通过修改原型链实现继承，
+     * 要清晰、方便和语义化的多。**/
+    /* 四边形 */class Rectangle {
+        constructor(length, width) {
+            this.length = length;
+            this.width = width;
+            this.color = 'red'
+        }
+        /* 获取面积 */
+        getArea() {
+            return this.length * this.width
+        }
+        /* 获取尺寸信息 */
+        getSize() {
+            console.log(`Rectangle: ${ this.length }x${ this.width }，
+            面积: ${ this.getArea() }`)
+        }}
+
+    /* 正方形 */class Square extends Rectangle {
+        constructor(size) {
+            super(size, size);
+            this.color = 'blue'
+        }
+        getSize() {
+            console.log(`Square: ${ this.length }x${ this.width }，
+            面积: ${ this.getArea() }`)
+        }}
+
+
+    var rect = new Rectangle(5, 10);
+    var squa = new Square(6);
+
+    rect.getSize(); // Rectangle: 5x10，面积: 50
+    squa.getSize(); // Square: 6x6，面积: 36
+    /**
+     * 然而并不是所有浏览器都支持 class/extends 关键词，
+     * 不过我们可以引入 Babel 来进行转译。
+     * class 语法实际上也是之前语法的语法糖，
+     * 用户可以把上面的代码放到 Babel 的在线编译中看看，
+     * 编译出来是什么样子。
+     */
+</script>
+
+</body>
+</html>

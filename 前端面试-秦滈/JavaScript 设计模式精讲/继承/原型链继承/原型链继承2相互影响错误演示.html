@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /* 四边形 */
+    function Rectangle(sizes) {
+        this.sizes = sizes
+    }
+
+    /* 正方形 */
+    function Square() {}
+
+    Square.prototype = new Rectangle([1, 2]);
+
+    var squa1 = new Square(); // sizes: [1, 2]
+
+    squa1.sizes.push(3);// 在 squa1 中修改了 sizes
+
+    console.log(squa1.sizes); // sizes: [1, 2, 3]
+
+    var squa2 = new Square();
+
+    console.log(squa2.sizes); // sizes: [1, 2, 3] 应该是 [1, 2]，得到的是修改后的 sizes
+</script>
+</body>
+</html>

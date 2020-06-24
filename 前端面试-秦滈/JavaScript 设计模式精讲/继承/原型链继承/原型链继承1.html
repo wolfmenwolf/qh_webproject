@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型链继承1</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * JavaScript 引擎帮你把构造函数的 prototype
+     * 属性设置为一个继承自 Object.prototype 的对象，
+     * 这意味着我们创建出来的构造函数都继承自 Object.prototype。
+     * 由于 prototype 可以被赋值和改写，所以通过改写它来改变原型链：
+     */
+    /* 四边形 */
+    function Rectangle(length, width) {
+        this.length = length; // 长
+        this.width = width // 宽
+    }
+
+    /* 获取面积 */
+    Rectangle.prototype.getArea = function()
+    {
+        return this.length * this.width
+    };
+
+    /* 获取尺寸信息 */
+    Rectangle.prototype.getSize = function() {
+        console.log(`Rectangle: ${ this.length }x${ this.width }，
+        面积: ${ this.getArea() }`)
+    };
+
+    /* 正方形 */
+    function Square(size)
+    {
+        this.length = size;
+        this.width = size
+    }
+
+    Square.prototype = new Rectangle();
+    Square.prototype.constructor = Square; // 原本为 Rectangle，重置回 Square 构造函数
+
+    Square.prototype.getSize = function()
+    {
+        console.log(`Square: ${ this.length }x${ this.width }，面积: ${ this.getArea() }`)
+    };
+
+    var rect = new Rectangle(5, 10);
+    var squa = new Square(6);
+
+    rect.getSize(); // Rectangle: 5x10，面积: 50
+    squa.getSize(); // Square: 6x6，面积: 36
+    /**
+     * 为什么使用 Square.prototype = new Rectangle()
+     * 而不用 Square.prototype = Rectangle.prototype 呢。
+     * 这是因为后者使得两个构造函数的 prototype 指向了同一个对象，
+     * 当修改其中一个函数的 prototype 时，另一个函数也会受影响。
+     * 所以 Square 构造函数的 prototype 属性被改写为了 Rectagle 的一个实例。
+     * 但是仍然有问题。当一个属性只存在于构造函数的 prototype 上，
+     * 而构造函数本身没有时，该属性会在构造函数的所有实例间共享，
+     * 其中一个实例修改了该属性，其他所有实例都会受影响：
+     */
+</script>
+
+</body>
+</html>

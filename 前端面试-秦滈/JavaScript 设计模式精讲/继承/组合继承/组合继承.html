@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合继承</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 组合继承又称伪经典继承，
+     * 指的是将原型链和借用构造函数的技术组合发挥二者之长的一种继承模式。
+     * 其背后的思路是使用原型链实现对原型属性和方法的继承，
+     * 而通过借用构造函数来实现对实例属性的继承。
+     * 这样，既通过在原型上定义方法实现了函数复用，
+     * 又能够保证每个实例都有它自己的属性。
+     */
+    /* 四边形 */
+    function Rectangle(length, width) {
+        this.length = length;
+        this.width = width;
+        this.color = 'red'
+    }
+
+    /* 获取面积 */
+    Rectangle.prototype.getArea = function() {
+        return this.length * this.width
+    };
+
+    /* 获取尺寸信息 */
+    Rectangle.prototype.getSize = function() {
+        console.log(`Rectangle: ${ this.length }x${ this.width }，
+        面积: ${ this.getArea() }`)
+    };
+
+    /* 正方形 */
+    function Square(size) {
+        Rectangle.call(this, size, size); // 第一次调用 Rectangle 函数
+        this.color = 'blue'
+    }
+
+    Square.prototype = new Rectangle(); // 第二次调用 Rectangle 函数
+    Square.prototype.constructor = Square;
+
+    Square.prototype.getSize = function() {
+        console.log(`Square: ${ this.length }x${ this.width }，
+        面积: ${ this.getArea() }`)
+    };
+
+    var rect = new Rectangle(5, 10);
+    var squa = new Square(6);
+
+    rect.getSize(); // Rectangle: 5x10，面积: 50
+    squa.getSize(); // Square: 6x6，面积: 36
+    /**
+     * 组合继承是 JavaScript 中最常用的继承模式，
+     * 但是父类构造函数被调用了两次
+     */
+</script>
+
+</body>
+</html>

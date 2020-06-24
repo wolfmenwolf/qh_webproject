@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象字面量创建对象</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**会隐式指定 Object.prototype 为新对象的 [[Prototype]]。
+使用 Object.create() 方式创建对象时，
+可以显式指定新对象的 [[Prototype]]。
+该方法接受两个参数：
+第一个参数为新对象的 [[Prototype]]，
+第二个参数描述了新对象的属性，
+格式如在 Object.defineProperties() 中使用的一样。**/
+        // 对象字面量形式，原型被隐式地设置为 Object.prototype
+    var rectangle1 = { sizeType: '四边形' };
+    // Object.create() 创建，显示指定为 Object.prototype， 等价于 ↑
+    var rectangle2 = Object.create(Object.prototype, {
+        sizeType: {
+            configurable: true,
+            enumerable: true,
+            value: '四边形',
+            writable: true
+        }})
+</script>
+
+</body>
+</html>
