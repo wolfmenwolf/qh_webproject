@@ -24,7 +24,7 @@
         <!-- <component :is="NextTickName"/> -->
         
         <!-- 异步组件 -->
-        <!-- <FormDemo v-if="showFormDemo"/>
+        <!-- <FormDemoInput v-if="showFormDemo"/>
         <button @click="showFormDemo = true">show form demo</button> -->
 
         <!-- keep-alive -->
@@ -49,7 +49,7 @@ export default {
         // NextTick
         // SlotDemo,
         // ScopedSlotDemo,
-        // FormDemo: () => import('../BaseUse/FormDemo'),
+        // FormDemoInput: () => import('../BaseUse/FormDemoInput'),
         // KeepAlive
         MixinDemo
     },

@@ -26,7 +26,7 @@ class Input extends React.Component {
     }
     onSubmit = () => {
         const { submitTitle } = this.props
-        submitTitle(this.state.title) // 'abc'
+        submitTitle(this.state.title); // 'abc'
 
         this.setState({
             title: ''

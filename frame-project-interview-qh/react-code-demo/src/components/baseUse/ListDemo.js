@@ -1,10 +1,9 @@
-import React from 'react'
-
-class ListDemo extends React.Component {
-    constructor(props) {
+import React from 'react';
+class ListDemo extends React.Component{
+    constructor(props){
         super(props);
         this.state = {
-            list: [
+            list:[
                 {
                     id: 'id-1',
                     title: '标题1'
@@ -20,15 +19,17 @@ class ListDemo extends React.Component {
             ]
         }
     }
-    render() {
+
+    render(){
         return <ul>
-            { /* vue v-for */
+            {
+                /*vue v-for*/
                 this.state.list.map(
-                    (item, index) => {
+                    (item,index) => {
                         // 这里的 key 和 Vue 的 key 类似，必填，不能是 index 或 random
-                        return <li key={item.id}>
-                            index {index}; id {item.id}; title {item.title}
-                        </li>
+                       return <li key={item.id}>
+                           index{index};id{item.id}; title{item.title}
+                       </li>
                     }
                 )
             }
@@ -36,4 +37,4 @@ class ListDemo extends React.Component {
     }
 }
 
-export default ListDemo
+export default ListDemo;

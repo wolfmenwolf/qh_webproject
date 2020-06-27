@@ -10,7 +10,7 @@ const todos = (state = [], action) => {
             text: action.text, // title
             completed: false
           }
-        ]
+        ];
       
       // 切换一个 todo 的完成状态
       case 'TOGGLE_TODO':
@@ -23,6 +23,6 @@ const todos = (state = [], action) => {
       default:
         return state
     }
-  }
+  };
   
   export default todos

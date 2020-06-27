@@ -6,7 +6,7 @@ class Input extends React.Component {
     }
     onChange = (e) => {
         // 传给父组件
-        const newVal = e.target.value
+        const newVal = e.target.value;
         this.props.onChange(newVal)
     }
 }

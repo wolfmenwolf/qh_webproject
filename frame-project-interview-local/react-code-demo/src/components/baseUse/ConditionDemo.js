@@ -3,14 +3,14 @@ import './style.css'
 
 class ConditionDemo extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             theme: 'black'
         }
     }
     render() {
-        const blackBtn = <button className="btn-black">black btn</button>
-        const whiteBtn = <button className="btn-white">white btn</button>
+        const blackBtn = <button className="btn-black">black btn</button>;
+        const whiteBtn = <button className="btn-white">white btn</button>;
 
         // // if else
         // if (this.state.theme === 'black') {

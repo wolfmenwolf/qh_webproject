@@ -2,7 +2,7 @@ import React from 'react'
 
 class FormDemo extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             name: '双越',
             info: '个人信息',
@@ -16,7 +16,8 @@ class FormDemo extends React.Component {
         // // 受控组件（非受控组件，后面再讲）
         // return <div>
         //     <p>{this.state.name}</p>
-        //     <label htmlFor="inputName">姓名：</label> {/* 用 htmlFor 代替 for */}
+        //     <label htmlFor="inputName">姓名：</label>
+        //     {/* 用 htmlFor 代替 for */}
         //     <input id="inputName" value={this.state.name} onChange={this.onInputChange}/>
         // </div>
 

@@ -3,7 +3,7 @@ import CheckBox from './UI/CheckBox'
 
 class ListItem extends React.Component {
     render() {
-        const { item } = this.props
+        const { item } = this.props;
 
         return <div style={{ marginTop: '10px' }}>
             <CheckBox onChange={this.completedChangeHandler}/>
@@ -17,9 +17,9 @@ class ListItem extends React.Component {
         console.log('checked', checked)
         const { item, toggleCompleted } = this.props
         toggleCompleted(item.id)
-    }
+    };
     deleteHandler = () => {
-        const { item, deleteItem } = this.props
+        const { item, deleteItem } = this.props;
         deleteItem(item.id)
     }
 }

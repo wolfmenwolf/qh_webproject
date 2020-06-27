@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-class EventDemo extends React.Component {
-    constructor(props) {
+class EventDemo extends React.Component{
+    constructor(props){
         super(props);
         this.state = {
-            name: 'zhangsan',
-            list: [
+            name:'zhangsan',
+            list:[
                 {
                     id: 'id-1',
                     title: '标题1'
@@ -20,45 +20,32 @@ class EventDemo extends React.Component {
                 }
             ]
         };
-
-        // 修改方法的 this 指向
-        this.clickHandler1 = this.clickHandler1.bind(this)
+        //修改方法的 this 指向
+        this.clickHandler1 = this.clickHandler1.bind(this);
     }
-    render() {
-        // // this - 使用 bind
-        // return <p onClick={this.clickHandler1}>
-        //     {this.state.name}
-        // </p>
 
-        // // this - 使用静态方法
-        // return <p onClick={this.clickHandler2}>
-        //     clickHandler2 {this.state.name}
-        // </p>
-
-        // // event
-        // return <a href="https://imooc.com/" onClick={this.clickHandler3}>
-        //     click me
-        // </a>
-
-        // 传递参数 - 用 bind(this, a, b)
-        return <ul>{this.state.list.map((item, index) => {
-            return <li key={item.id} onClick={this.clickHandler4.bind(this, item.id, item.title)}>
-                index {index}; title {item.title}
+    render(){
+        return <ul>{this.state.list.map((item,index) => {
+            return <li key={item.id} onClick={this.clickHandler4.bind(this,item.id,item.title)}>
+                index {index};title{item.title}
             </li>
         })}</ul>
     }
-    clickHandler1() {
+
+    clickHandler1(){
         // console.log('this....', this) // this 默认是 undefined
         this.setState({
-            name: 'lisi'
+            name:'lisi'
         })
     }
+
     // 静态方法，this 指向当前实例
     clickHandler2 = () => {
         this.setState({
             name: 'lisi'
         })
-    }
+    };
+
     // 获取 event
     clickHandler3 = (event) => {
         event.preventDefault() // 阻止默认行为
