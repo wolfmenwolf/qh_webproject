@@ -1,6 +1,6 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { srcPath, distPath } = require('./paths')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { srcPath, distPath } = require('./paths');
 
 module.exports = {
     entry: {
@@ -37,4 +37,4 @@ module.exports = {
             chunks: ['other', 'common']  // 考虑代码分割
         })
     ]
-}
+};

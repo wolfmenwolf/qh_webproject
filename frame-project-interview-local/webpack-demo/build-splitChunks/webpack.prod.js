@@ -1,12 +1,12 @@
-const path = require('path')
-const webpack = require('webpack')
-const { smart } = require('webpack-merge')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserJSPlugin = require('terser-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const webpackCommonConf = require('./webpack.common.js')
-const { srcPath, distPath } = require('./paths')
+const path = require('path');
+const webpack = require('webpack');
+const { smart } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const webpackCommonConf = require('./webpack.common.js');
+const { srcPath, distPath } = require('./paths');
 
 module.exports = smart(webpackCommonConf, {
     mode: 'production',
@@ -104,4 +104,4 @@ module.exports = smart(webpackCommonConf, {
             }
         }
     }
-})
+});
