@@ -2,3 +2,4 @@
 .gitignore
 .idea/inspectionProfiles/
 /frame-project-interview/
+node_modules
